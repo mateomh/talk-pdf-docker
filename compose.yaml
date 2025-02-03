@@ -1,0 +1,48 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 8000:8503
+    env_file:
+      - .env
+    depends_on:
+      vector-db:
+        condition: service_healthy
+      ollama-pull:
+        condition: service_completed_successfully
+  vector-db:
+    image: neo4j:5.11
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_volume:/root/.ollama
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+  ollama-pull:
+    image: docker/genai:ollama-pull
+    env_file:
+      - .env
+    depends_on:
+      ollama:
+        condition: service_started
+volumes:
+  ollama_volume:
