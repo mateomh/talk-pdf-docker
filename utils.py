@@ -2,7 +2,7 @@ class BaseLogger:
     def __init__(self) -> None:
         self.info = print
 
-
+# Used in chains.py but not used for the project
 def extract_title_and_question(input_string):
     lines = input_string.strip().split("\n")
 
@@ -25,7 +25,7 @@ def extract_title_and_question(input_string):
 
     return title, question
 
-
+# Not used
 def create_vector_index(driver, dimension: int) -> None:
     index_query = "CALL db.index.vector.createNodeIndex('stackoverflow', 'Question', 'embedding', $dimension, 'cosine')"
     try:
@@ -38,7 +38,7 @@ def create_vector_index(driver, dimension: int) -> None:
     except:  # Already exists
         pass
 
-
+# Not used
 def create_constraints(driver):
     driver.query(
         "CREATE CONSTRAINT question_id IF NOT EXISTS FOR (q:Question) REQUIRE (q.id) IS UNIQUE"

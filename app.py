@@ -11,7 +11,7 @@ from chains import (
     load_embedding_model,
     load_llm,
 )
-
+# Getting the values from the environment variables
 url = os.getenv("NEO4J_URI")
 username = os.getenv("NEO4J_USERNAME")
 password = os.getenv("NEO4J_PASSWORD")
@@ -43,8 +43,10 @@ if not all([url, username, password,
 
 os.environ["NEO4J_URL"] = url
 
+# Streamlit logger
 logger = get_logger(__name__)
 
+# Load the embeding(engine?) from chains.py
 embeddings, dimension = load_embedding_model(
     embedding_model_name, config={"ollama_base_url": ollama_base_url}, logger=logger
 )

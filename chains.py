@@ -16,7 +16,7 @@ from langchain.prompts.chat import (
 from typing import List, Any
 from utils import BaseLogger, extract_title_and_question
 
-
+# Is a embedding an engine in langchain?
 def load_embedding_model(embedding_model_name: str, logger=BaseLogger(), config={}):
     if embedding_model_name == "ollama":
         embeddings = OllamaEmbeddings(
@@ -70,7 +70,7 @@ def load_llm(llm_name: str, logger=BaseLogger(), config={}):
     logger.info("LLM: Using GPT-3.5")
     return ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo", streaming=True)
 
-
+# Not used
 def configure_llm_only_chain(llm):
     # LLM only response
     template = """
@@ -163,7 +163,7 @@ def configure_qa_rag_chain(llm, embeddings, embeddings_store_url, username, pass
     )
     return kg_qa
 
-
+# Not used
 def generate_ticket(neo4j_graph, llm_chain, input_question):
     # Get high ranked questions
     records = neo4j_graph.query(
