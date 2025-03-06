@@ -30,12 +30,19 @@ RAG is a powerful technique that enhances language models by combining them with
 
 ## Agents
 
+By themselves, language models can't take actions, they just output text. For this reason the concept of agents was created. Agents are systems that use LLMs as reasoning engines to determine which actions to take and the inputs necessary to perform the action. After executing actions, the results can be fed back into the LLM to determine whether more actions are needed, or whether it is okay to finish.
+
 ## Multimodality
+
+Multimodality is to the ability to work with data that comes in different forms, such as text, audio, images, and video. Multimodality can appear in various components, allowing models and systems to handle and process a mix of these data types seamlessly. Multimodal support is still relatively new and less common, model providers have not yet standardized on the "best" way to define the API. As such, LangChain's multimodal abstractions are designed to accommodate different model providers' APIs and interaction patterns, but are not standardized across models. Some models can accept multimodal inputs, such as images, audio, video, or files. The types of multimodal inputs supported depend on the model provider. For instance, Google's Gemini supports documents like PDFs as inputs. As for outputs, Virtually no popular chat models support multimodal outputs at the time of writing (October 2024). The only exception is OpenAI's chat model (gpt-4o-audio-preview), which can generate audio outputs. Multimodal outputs will appear as part of the AIMessage response object.
 
 ## Evaluation
 
+Evaluation is the process of assessing the performance and effectiveness of your LLM-powered applications. It involves testing the model's responses against a set of predefined criteria or benchmarks to ensure it meets the desired quality standards and fulfills the intended purpose. This process is vital for building reliable applications.
+
 ## Vector Stores
 
+Vector stores are specialized data stores that enable indexing and retrieving information based on vector representations. These vectors, called embeddings, capture the semantic meaning of data that has been embedded. Vector stores are frequently used to search over unstructured data, such as text, images, and audio, to retrieve relevant information based on semantic similarity rather than exact keyword matches. LangChain has a large number of [vectorstore integrations](https://python.langchain.com/docs/integrations/vectorstores/), allowing users to easily switch between different vectorstore implementations.
 
 # Next steps
 
